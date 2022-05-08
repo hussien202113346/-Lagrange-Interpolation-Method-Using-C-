@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+  cout<<"Enter the number of values for time or speed in the table (number of points)\n" ;
+  int n ;
+  cin>>n;
+  double T[n],V[n],x;
+  for (int i=0;i<n;i++)
+  {
+      cout<<"Enter time num."<<i<<" and speed num."<<i<<endl ;
+      cin>>T[i]>>V[i];
+  }
+  cout<<"Enter the value u want to know speed at \n";
+  cin>>x ;
+  double lag[n] ,sum=0.0;
+ for (int i=0;i<n;i++) lag[i]=1 ;
+  for (int i=0;i<n;i++)
+  {
+      for (int j=0;j<n;j++) if(i!=j) lag[i]*=(x-T[j])/(T[i]-T[j]);
+
+  }
+  cout<<"P"<<n-1<<"(x) = " ;
+  for (int i=0;i<n;i++) {
+
+        sum+=lag[i]*V[i] ;
+        cout<<"(L"<<i<<" = "<<lag[i]*V[i]<<") + ";
+        if (i==n-1) cout<<"\b\b  ";
+
+  }
+  cout <<endl<<"P"<<n-1<<"(x) = "<< sum ;
+
+    return 0;
+}
